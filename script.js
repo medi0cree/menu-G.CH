@@ -358,11 +358,6 @@ els.form.addEventListener("submit", (e) => {
   const comment = document.getElementById("field-comment").value.trim();
   els.formError.hidden = true;
 
-  if (!name) {
-    els.formError.textContent = "Укажите имя.";
-    els.formError.hidden = false;
-    return;
-  }
   if (!phoneValid(phone)) {
     els.formError.textContent = "Телефон в формате +7 (999) 123-45-67.";
     els.formError.hidden = false;
