@@ -286,7 +286,7 @@ function orderId() {
   return `GC-${ymd}-${rnd}`;
 }
 
-function buildWhatsAppUrl(id, name, phone, comment) {
+function buildWhatsAppUrl(id, phone, comment) {
   const lines = cart.map((row) => {
     const item = itemsById[row.id];
     return item ? `${item.name} × ${row.qty} = ${item.price * row.qty} ₽` : "";
