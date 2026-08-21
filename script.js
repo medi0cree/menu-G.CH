@@ -354,7 +354,6 @@ els.phone.addEventListener("focus", () => {
 
 els.form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = document.getElementById("field-name").value.trim();
   const phone = els.phone.value.trim();
   const comment = document.getElementById("field-comment").value.trim();
   els.formError.hidden = true;
