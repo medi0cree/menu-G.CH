@@ -4,7 +4,7 @@
  */
 
 /** WhatsApp кафе: только цифры, без плюса и пробелов */
-const PHONE_NUMBER = "79001234567";
+const PHONE_NUMBER = "79289580006";
 
 const CART_KEY = "gc-cart-v1";
 
@@ -376,7 +376,7 @@ els.form.addEventListener("submit", (e) => {
   }
 
   const id = orderId();
-  const wa = buildWhatsAppUrl(id, name, phone, comment);
+  const wa = buildWhatsAppUrl(id, phone, comment);
   els.orderNumber.textContent = `#${id}`;
   els.waRetry.href = wa;
   cart = [];
