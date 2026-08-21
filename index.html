@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#1A1A1A" />
+  <title>Gold Chicken — меню</title>
+  <meta name="description" content="Меню кафе Gold Chicken, Кизляр, ул. Советская, 8. Шаурма, бургеры, кофе." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#menu">К меню</a>
+
+  <header class="site-header">
+    <div class="header-bar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i class="fa-solid fa-drumstick-bite"></i></span>
+        <div>
+          <h1>GOLD CHICKEN</h1>
+          <p class="address"><i class="fa-solid fa-location-dot"></i> ул. Советская, 8, Кизляр</p>
+        </div>
+      </div>
+      <button type="button" class="cart-btn" id="cart-open" aria-label="Открыть корзину">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span class="cart-badge" id="cart-badge" hidden>0</span>
+      </button>
+    </div>
+    <div class="hero">
+      <img src="images/facade.png" alt="Фасад кафе Gold Chicken" />
+      <div class="hero-overlay">
+        <p>Сканируйте QR — выбирайте блюда — оформляйте заказ</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Экран меню -->
+    <section id="view-menu" class="view is-active">
+      <nav class="category-nav" id="category-nav" aria-label="Категории меню"></nav>
+      <div id="menu" class="menu"></div>
+    </section>
+
+    <!-- Экран оформления заказа -->
+    <section id="view-checkout" class="view" hidden>
+      <div class="checkout-wrap">
+        <button type="button" class="back-link" id="back-to-menu">
+          <i class="fa-solid fa-arrow-left"></i> К меню
+        </button>
+        <h2>Оформление заказа</h2>
+        <p class="checkout-lead">Заполните контакты — заказ уйдёт в WhatsApp кафе.</p>
+        <ul class="checkout-summary" id="checkout-summary"></ul>
+        <p class="checkout-total">Итого: <strong id="checkout-total">0 ₽</strong></p>
+        <form id="checkout-form" novalidate>
+          <label>
+            Имя <span class="req">*</span>
+            <input type="text" id="field-name" name="name" autocomplete="name" required maxlength="80" placeholder="Как к вам обращаться" />
+          </label>
+          <label>
+            Телефон <span class="req">*</span>
+            <input type="tel" id="field-phone" name="phone" inputmode="tel" autocomplete="tel" required placeholder="+7 (___) ___-__-__" />
+          </label>
+          <label>
+            Комментарий к заказу
+            <textarea id="field-comment" name="comment" rows="3" maxlength="400" placeholder="Без лука, острее, номер столика…"></textarea>
+          </label>
+          <p class="form-error" id="form-error" hidden></p>
+          <button type="submit" class="btn-gold btn-block" id="pay-btn">
+            Оплатить заказ
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Экран «заказ принят» -->
+    <section id="view-success" class="view" hidden>
+      <div class="success-wrap">
+        <i class="fa-solid fa-circle-check success-icon"></i>
+        <h2>Заказ принят!</h2>
+        <p class="success-text">Ваш номер:</p>
+        <p class="order-number" id="order-number">#GC-</p>
+        <p class="success-hint">Сообщение с составом открылось в WhatsApp. Если окно не появилось, нажмите кнопку ниже.</p>
+        <a class="btn-gold btn-block" id="wa-retry" target="_blank" rel="noopener">Открыть WhatsApp</a>
+        <button type="button" class="btn-ghost btn-block" id="new-order">Новый заказ</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© 2026 Gold Chicken</p>
+    <button type="button" class="footer-link" id="privacy-open">Политика конфиденциальности</button>
+  </footer>
+
+  <!-- Корзина -->
+  <div class="drawer-backdrop" id="cart-backdrop" hidden></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true" role="dialog" aria-labelledby="cart-title">
+    <div class="drawer-handle" aria-hidden="true"></div>
+    <header class="drawer-head">
+      <h2 id="cart-title">Корзина</h2>
+      <button type="button" class="icon-btn" id="cart-close" aria-label="Закрыть корзину">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </header>
+    <div class="drawer-body" id="cart-items"></div>
+    <footer class="drawer-foot">
+      <p class="cart-total">Итого: <strong id="cart-total">0 ₽</strong></p>
+      <button type="button" class="btn-gold btn-block" id="go-checkout" disabled>Перейти к оплате</button>
+    </footer>
+  </aside>
+
+  <!-- Заглушка политики -->
+  <div class="modal" id="privacy-modal" hidden>
+    <div class="modal-card">
+      <h2>Политика конфиденциальности</h2>
+      <p>Мы используем имя и телефон только для связи по заказу через WhatsApp. Данные не передаются третьим лицам. Корзина хранится локально в браузере (localStorage).</p>
+      <button type="button" class="btn-gold" id="privacy-close">Понятно</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
