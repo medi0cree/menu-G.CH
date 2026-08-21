@@ -293,7 +293,6 @@ function buildWhatsAppUrl(id, name, phone, comment) {
   }).filter(Boolean);
   const text = [
     `Новый заказ #${id}`,
-    `Имя: ${name}`,
     `Телефон: ${phone}`,
     `Состав:`,
     ...lines,
